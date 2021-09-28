@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="classificacao.css">
+    <title>Imersão Dev - Aula 06</title>
+</head>
+<body>
+    
+    <h1>Tabela de classificação</h1>
+
+  <table style="width:100%">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Vitórias</th>
+        <th>Empates</th>
+        <th>Derrotas</th>
+        <th>Pontos</th>
+        <th colspan=3>Ações</th>
+      </tr>
+    </thead>
+    <tbody id="tabelaJogadores">
+            <!-- <tr>
+        <td>Paulo</td>
+        <td>2</td>
+        <td>5</td>
+        <td>1</td>
+        <td>24</td>
+        <td><button onClick="adicionarVitoria()">Vitória</button></td>
+        <td><button onClick="adicionarEmpate()">Empate</button></td>
+        <td><button onClick="adicionarDerrota()">Derrota</button></td>
+      </tr>
+
+      <tr>
+        <td>Rafa</td>
+        <td>3</td>
+        <td>5</td>
+        <td>6</td>
+        <td>2</td>
+        <td><button onClick="adicionarVitoria()">Vitória</button></td>
+        <td><button onClick="adicionarEmpate()">Empate</button></td>
+        <td><button onClick="adicionarDerrota()">Derrota</button></td>
+      </tr>
+
+      <tr>
+        <td>Nato</td>
+        <td>4</td>
+        <td>6</td>
+        <td>7</td>
+        <td>3</td>
+        <td><button onClick="adicionarVitoria()">Vitória</button></td>
+        <td><button onClick="adicionarEmpate()">Empate</button></td>
+        <td><button onClick="adicionarDerrota()">Derrota</button></td>
+      </tr>
+
+    </tbody> -->
+
+    <script>
+        var rafa = { nome: "Rafa", vitorias: 2, empates: 1, derrotas: 1, pontos: 7 };
+        var paulo = { nome: "Paulo", vitorias: 1, empates: 1, derrotas: 2, pontos: 4 };
+        var renato = { nome: "Renato", vitorias: 0, empates: 0, derrotas: 0, pontos: 0 };
+
+        rafa.pontos = empatePontos(rafa);
+        paulo.pontos = empatePontos(paulo);
+        renato.pontos = empatePontos(renato);
+
+        function vitoriaPontos(jogador) {
+        var pontos = jogador.vitorias * 3 + jogador.empates;
+        return pontos;
+        }
+
+        function empatePontos(jogador) {
+        var empate = jogador.empates * 2;
+        var pontos = jogador.pontos / 0;  
+        return empate;
+        }
+
+        function derrotaPontos(jogador) {
+        var derrotas = jogador.derrotas * 2 
+        var resto = jogador.pontos - 1;
+        return resto;
+        }
+
+        console.log(rafa);
+        console.log(paulo);
+        console.log(renato);
+
+        var jogadores = [rafa, paulo, renato];
+
+        console.log(jogadores);
+
+        function exibeJogadoresNaTela(jogadores) {
+        var elemento = "";
+        for (var i = 0; i < jogadores.length; i++) {
+            elemento += "<tr><td>" + jogadores[i].nome + "</td>";
+            elemento += "<td>" + jogadores[i].vitorias + "</td>";
+            elemento += "<td>" + jogadores[i].empates + "</td>";
+            elemento += "<td>" + jogadores[i].derrotas + "</td>";
+            elemento += "<td>" + jogadores[i].pontos + "</td>";
+            elemento +=
+            "<td><button onClick='adicionarVitoria(" + i + ")'>Vitória</button></td>";
+            elemento += 
+            "<td><button onClick='adicionarEmpate(" + i + ")'>Empate</button></td>";
+            elemento +=
+            "<td><button onClick='adicionarDerrota(" + i + ")'>Derrota</button></td>";
+            elemento += "</tr>";
+        }
+        
+        var tabelaJogadores = document.getElementById("tabelaJogadores")
+        tabelaJogadores.innerHTML = elemento;
+        }
+
+        exibeJogadoresNaTela(jogadores);
+
+        function adicionarVitoria(i) {
+        var jogador = jogadores [i];
+        jogador.vitorias++
+        jogador.pontos = vitoriaPontos(jogador);
+        exibeJogadoresNaTela(jogadores)
+        }
+
+        function adicionarEmpate(i) {
+        var jogador = jogadores [i];
+        jogador.empates++; 
+        vitoriaPontos(jogador);
+        exibeJogadoresNaTela(jogadores)
+        }
+
+        function adicionarDerrota(i) {
+        var jogador = jogadores[i];
+        jogador.derrotas++
+        jogador.pontos = derrotaPontos(jogador);
+        exibeJogadoresNaTela(jogadores)
+        }
+    </script>
+  </table>
+
+</body>
+</html>
